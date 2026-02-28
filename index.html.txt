@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TINTX Navbar</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Montserrat',sans-serif;}
+
+/* ================= NAVBAR BASE ================= */
+.tintx-navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  background:linear-gradient(to bottom,#000 0%,#0a0a0a 100%);
+  box-shadow:0 0 30px rgba(120,0,0,0.25);
+  z-index:100000;
+}
+
+/* Red bottom line */
+.tintx-navbar::after {
+  content:"";
+  display:block;
+  width:100%;
+  height:3px;
+  background:#c00000;
+  position:absolute;
+  bottom:0;
+  left:0;
+  pointer-events: none; /* clickable elements pass through */
+  z-index:1;
+}
+
+/* ================= CONTAINER ================= */
+.tintx-container{
+  max-width:1200px;
+  margin:auto;
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* ================= LOGO ================= */
+.tintx-logo img{
+  height:64px;
+  display:block;
+}
+
+/* ================= MENU ICON (mobile) ================= */
+#nav-toggle{
+  display:none;
+}
+.label-toggle{
+  display:none;
+  font-size:28px;
+  color:#c00000;
+  cursor:pointer;
+}
+
+/* ================= NAV LIST ================= */
+.tintx-nav{
+  display:flex;
+  gap:30px;
+  list-style:none;
+  align-items:center;
+}
+
+/* NAV ITEMS */
+.tintx-nav-item>a{
+  text-decoration:none;
+  color:#c00000;
+  font-size:15px;
+  font-weight:500;
+  letter-spacing:0.4px;
+  position:relative;
+}
+
+/* UNDERLINE HOVER */
+.tintx-nav-item>a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  width:0%;
+  height:2px;
+  background:#ff0000;
+  transition:0.3s ease;
+}
+.tintx-nav-item>a:hover::after{
+  width:100%;
+}
+
+/* ================= DESKTOP DROPDOWN ================= */
+.tintx-dropdown{
+  position:absolute;
+  top:100%;
+  left:0;
+  background:#0d0d0d;
+  min-width:220px;
+  display:none;
+  flex-direction:column;
+  border:1px solid rgba(255,0,0,0.1);
+  box-shadow:0 0 20px rgba(150,0,0,0.2);
+  z-index:1000;
+}
+.tintx-nav-item:hover .tintx-dropdown{
+  display:flex;
+}
+.tintx-dropdown a{
+  padding:10px 18px;
+  color:#d00000;
+  text-decoration:none;
+  font-size:14px;
+}
+.tintx-dropdown a:hover{
+  background:rgba(255,0,0,0.08);
+  padding-left:24px;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+@media (max-width:950px){
+  .label-toggle{
+    display:block;
+  }
+
+  .tintx-nav{
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:#000;
+    flex-direction:column;
+    display:none;
+    padding:10px 0;
+  }
+
+  #nav-toggle:checked + .tintx-nav{
+    display:flex;
+  }
+
+  .tintx-nav-item{
+    width:100%;
+  }
+
+  .tintx-nav-item>a, .tintx-dropdown a{
+    display:block;
+    padding:15px 20px;
+  }
+
+  .tintx-dropdown{
+    position:relative;
+    top:0;
+    left:0;
+    box-shadow:none;
+    border:none;
+    display:flex;
+    flex-direction:column;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav class="tintx-navbar">
+  <div class="tintx-container">
+
+    <!-- LOGO -->
+    <div class="tintx-logo">
+      <img src="https://raw.githubusercontent.com/username/tintx-navbar/main/TINTXLOGO.png" alt="TintX Logo">
+    </div>
+
+    <!-- MOBILE MENU TOGGLE -->
+    <input type="checkbox" id="nav-toggle">
+    <label for="nav-toggle" class="label-toggle">&#9776;</label>
+
+    <!-- NAV LINKS -->
+    <ul class="tintx-nav">
+      
+      <!-- HOME -->
+      <li class="tintx-nav-item">
+        <a href="https://tintxwindowtint.carrd.co/">Home</a>
+      </li>
+
+      <!-- OUR SERVICES -->
+      <li class="tintx-nav-item">
+        <a href="#">Our Services</a>
+        <div class="tintx-dropdown">
+          <a href="https://tintxwindowtint.carrd.co/#ps">Solar Films</a>
+          <a href="https://tintxwindowtint.carrd.co/#ssfilms">Privacy Films</a>
+        </div>
+      </li>
+
+      <!-- CONTACT US -->
+      <li class="tintx-nav-item">
+        <a href="#">Contact Us</a>
+        <div class="tintx-dropdown">
+          <a href="tel:+61434115199">+61 434 115 199</a>
+          <a href="mailto:tintx06@gmail.com">tintx06@gmail.com</a>
+          <a href="https://tintxwindowtint.carrd.co/#enquiry">Inquiries</a>
+        </div>
+      </li>
+
+      <!-- PRICING -->
+      <li class="tintx-nav-item">
+        <a href="#">Pricing</a>
+        <div class="tintx-dropdown">
+          <a href="https://tintxwindowtint.carrd.co/#op">Residential Pricing</a>
+          <a href="https://tintxwindowtint.carrd.co/#b">Premium Home Packages</a>
+        </div>
+      </li>
+
+      <!-- INFO -->
+      <li class="tintx-nav-item">
+        <a href="#">Info</a>
+        <div class="tintx-dropdown">
+          <a href="https://tintxwindowtint.carrd.co/#pp">Privacy Policy</a>
+          <a href="https://tintxwindowtint.carrd.co/#tc">Terms & Conditions</a>
+          <a href="https://tintxwindowtint.carrd.co/#warranty">Warranty</a>
+        </div>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+
+</body>
+</html>
